@@ -1,15 +1,31 @@
 
-package ca.sait.lab6.models;
+package ca.sait.lab7.models;
 
 import java.io.Serializable;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "user")
+@NamedQueries({
+    
+})
 
 public class User implements Serializable {
+    @Id
+    @Basic
+    @Column
     private String email;
+    @Column
     private boolean active;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column
     private String password;
+    
+    @ManyToOne(targetEntity = Role.class)
+    @JoinColumn(name = "role", referencedColumnName = "role_id")
     private Role role;
 
     public User() {
